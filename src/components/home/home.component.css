@@ -1,0 +1,17 @@
+body{
+  width: 100%;
+  height: 1000px;
+  background: linear-gradient(95.42deg, #1444dd 11.54%, #7045d4 57.94%);
+}
+
+.foto-perfil{
+  width: 500px;
+  height: 800px;
+}
+
+.texto-autodescritivo{
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}

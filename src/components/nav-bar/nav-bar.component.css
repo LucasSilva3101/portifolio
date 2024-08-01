@@ -1,0 +1,38 @@
+.topnav {
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: baseline;
+  position: fixed;
+  width: 100%;
+}
+
+.nav-items {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.topnav a:hover {
+  background-color: #00346c;
+  color: black;
+}
+
+.home-icon{
+  width: 100px;
+  height: 100px;
+}
