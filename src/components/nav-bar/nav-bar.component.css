@@ -7,13 +7,15 @@
   position: fixed;
   width: 100%;
   height: 76px;
+  z-index: 100;
 }
 
 .nav-items {
   display: flex;
   list-style: none;
-  padding: 0;
+  padding: 35rem;
   margin: 0;
+  margin-right: 15px;
 }
 
 .topnav a {
@@ -37,4 +39,19 @@
 .home-icon{
   width: 100px;
   height: 100px;
+}
+
+.download-curriculo a {
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 17px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  padding: 14px 16px;
+}
+
+.download-curriculo a:hover {
+  background-color: #ffffff;
+  color: black;
+  border-radius: 20px;
 }

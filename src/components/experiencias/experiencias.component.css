@@ -1,5 +1,37 @@
-p{
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: italic;
+body {
+  background-color: #070707;
+  height: 950px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background-color: #333;
+  border: 3px solid #0ff;
+  border-radius: 10px;
+  color: #fff;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card.expanded {
+  width: 400px;
+  height: auto;
+  padding: 20px;
+}
+
+.card-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.card-content {
+  text-align: center;
 }

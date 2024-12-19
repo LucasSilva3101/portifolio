@@ -1,7 +1,15 @@
 <body>
-  <main>
-    <h1>
-      experiencias atuais
-    </h1>
-  </main>
+  <div class="card" (click)="toggleCard()">
+    <div *ngIf="!isExpanded">
+      <img src="assets/sample-image.jpg" alt="Foto pequena" class="card-image" />
+    </div>
+    <div *ngIf="isExpanded" class="card-content">
+      <p>Este é o texto expandido do card.</p>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+    </div>
+  </div>
 </body>
