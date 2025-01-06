@@ -29,7 +29,7 @@ body {
 }
 
 .name-highlight {
-  color: #007bff; /* Azul */
+  color: #007bff;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -101,16 +101,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 50px;
+  padding: 20px;
   transform: translateY(50px); /* Para animação */
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .about-photo img {
-  width: 900px;
-  height: auto;
+  width: 65rem;
+  height: 45rem;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
   z-index: inherit;
 }
 
@@ -132,15 +131,53 @@ body {
 
 .social-links {
   margin-top: 20px;
-}
-
-.social-links a {
-  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: #ffffff;
   margin-right: 20px;
   text-decoration: none;
 }
 
+.social-links i {
+  font-size: 3rem;
+}
+
+.social-links a {
+  color: #ffffff;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.button-download {
+  width: 14rem;
+  height: 3.3rem;
+  display: inline-block;
+  padding: 10px 10px;
+  background-color: white;
+  color: #070707;
+  border-radius: 19px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .social-links a:hover {
-  color: #007acc; /* Cor do hover */
+  color: #007acc;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.projects {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding-top: 10rem ;
+}
+
+
+.projects h1,
+.projects h2 {
+  display: block;
+  margin: 0;
+  margin-bottom: 16px;
 }
