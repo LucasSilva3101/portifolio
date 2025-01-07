@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  linkParaCurriculo = 'assets/curriculo.pdf';
+
   constructor() { }
 
   ngOnInit() {
   }
-
-  linkParaCurriculo = 'assets/curriculo.pdf';
 
 }
