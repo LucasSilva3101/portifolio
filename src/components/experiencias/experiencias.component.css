@@ -6,32 +6,56 @@ body {
   align-items: center;
 }
 
-.card {
-  background-color: #333;
-  border: 3px solid #0ff;
-  border-radius: 10px;
-  color: #fff;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
-.card.expanded {
-  width: 400px;
-  height: auto;
-  padding: 20px;
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.card-header h3 {
+  margin-left: 10px;
+  color: #333;
 }
 
 .card-image {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.card-content {
-  text-align: center;
+.card-detail {
+  padding: 10px 20px;
+  display: none;
+  background-color: #f9f9f9;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card.expanded .card-detail {
+  display: block;
 }

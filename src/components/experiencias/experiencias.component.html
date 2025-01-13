@@ -1,15 +1,49 @@
 <body>
-  <div class="card" (click)="toggleCard()">
-    <div *ngIf="!isExpanded">
-      <img src="assets/sample-image.jpg" alt="Foto pequena" class="card-image" />
+  <div class="container">
+    <h1>Minhas Experiências Profissionais</h1>
+    <div class="card">
+      <div class="card-header">
+        <img src="assets/logo-sulamerica.jpg" alt="Logo SulAmerica" class="card-image">
+        <h3>SulAmérica</h3>
+      </div>
+      <div class="card-detail">
+        <p>Trabalhei como estagiário de TI, desenvolvendo soluções para automação de processos.</p>
+        <ul>
+          <li>Desenvolvimento em Angular</li>
+          <li>Manutenção de sistemas legados</li>
+          <li>Automação de relatórios</li>
+        </ul>
+      </div>
     </div>
-    <div *ngIf="isExpanded" class="card-content">
-      <p>Este é o texto expandido do card.</p>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>
+
+    <div class="card">
+      <div class="card-header">
+        <img src="assets/logo-empresa2.jpg" alt="Logo Empresa 2" class="card-image">
+        <h3>Empresa 2</h3>
+      </div>
+      <div class="card-detail">
+        <p>Atuei em projetos web, com foco em sistemas de gestão.</p>
+        <ul>
+          <li>Integração com APIs</li>
+          <li>Desenvolvimento front-end</li>
+          <li>Otimização de performance</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <img src="assets/logo-empresa3.jpg" alt="Logo Empresa 3" class="card-image">
+        <h3>Empresa 3</h3>
+      </div>
+      <div class="card-detail">
+        <p>Responsável pelo desenvolvimento de novas funcionalidades.</p>
+        <ul>
+          <li>Criação de módulos em Angular</li>
+          <li>Testes unitários</li>
+          <li>Documentação técnica</li>
+        </ul>
+      </div>
     </div>
   </div>
 </body>
