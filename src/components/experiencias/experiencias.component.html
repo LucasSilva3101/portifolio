@@ -1,47 +1,16 @@
 <body>
   <div class="container">
     <h1>Minhas Experiências Profissionais</h1>
-    <div class="card">
-      <div class="card-header">
-        <img src="assets/logo-sulamerica.jpg" alt="Logo SulAmerica" class="card-image">
-        <h3>SulAmérica</h3>
-      </div>
+    <div class="card" *ngFor="let exp of experiences">
+      <input type="checkbox" [id]="'card' + exp.id" class="toggle" />
+      <label [for]="'card' + exp.id" class="card-header">
+        <img [src]="exp.logo" [alt]="exp.title" class="card-image" />
+        <h3>{{ exp.title }}</h3>
+      </label>
       <div class="card-detail">
-        <p>Trabalhei como estagiário de TI, desenvolvendo soluções para automação de processos.</p>
+        <p>{{ exp.description }}</p>
         <ul>
-          <li>Desenvolvimento em Angular</li>
-          <li>Manutenção de sistemas legados</li>
-          <li>Automação de relatórios</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <img src="assets/logo-empresa2.jpg" alt="Logo Empresa 2" class="card-image">
-        <h3>Empresa 2</h3>
-      </div>
-      <div class="card-detail">
-        <p>Atuei em projetos web, com foco em sistemas de gestão.</p>
-        <ul>
-          <li>Integração com APIs</li>
-          <li>Desenvolvimento front-end</li>
-          <li>Otimização de performance</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <img src="assets/logo-empresa3.jpg" alt="Logo Empresa 3" class="card-image">
-        <h3>Empresa 3</h3>
-      </div>
-      <div class="card-detail">
-        <p>Responsável pelo desenvolvimento de novas funcionalidades.</p>
-        <ul>
-          <li>Criação de módulos em Angular</li>
-          <li>Testes unitários</li>
-          <li>Documentação técnica</li>
+          <li *ngFor="let detail of exp.details">{{ detail }}</li>
         </ul>
       </div>
     </div>

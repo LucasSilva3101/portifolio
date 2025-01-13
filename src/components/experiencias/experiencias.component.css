@@ -24,13 +24,17 @@ h1 {
   margin-bottom: 20px;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  cursor: pointer;
 }
 
 .card-header {
   display: flex;
   align-items: center;
   padding: 10px;
+  cursor: pointer;
+}
+
+.card-header:hover {
+  background-color: #f0f0f0;
 }
 
 .card-header h3 {
@@ -51,11 +55,15 @@ h1 {
   background-color: #f9f9f9;
 }
 
+.toggle {
+  display: none;
+}
+
+.toggle:checked + .card-header + .card-detail {
+  display: block;
+}
+
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card.expanded .card-detail {
-  display: block;
 }
