@@ -9,6 +9,7 @@
       </label>
       <div class="card-detail">
         <p>{{ exp.description }}</p>
+        <p>{{ exp.dataInit }} até {{ exp.dataFim }}</p>
         <ul>
           <li *ngFor="let detail of exp.details">{{ detail }}</li>
         </ul>
