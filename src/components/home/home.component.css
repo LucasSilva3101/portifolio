@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #070707;
   color: #fff;
-  height: 3000px;
+  height: max-content;
 }
 
 .page-container {
@@ -276,4 +276,111 @@ body {
 .coming-soon span::before {
   content: "Em breve novidades • Em breve novidades • Em breve novidades • Em breve novidades • Em breve novidades • ";
 }
+
+
+
+
+@media (max-width: 768px) {
+  .description-container {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .name-highlight {
+    font-size: 30px;
+  }
+
+  .photo-container {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .profile-photo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .about-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .about-photo img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .about-text {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .projects {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .description-text {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .icons-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+  }
+
+  .tech-icon {
+    font-size: 25px;
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+  }
+
+  .description-container {
+    width: 90%;
+    max-width: 350px;
+    height: 200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .photo-container {
+    margin-top: 15px;
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .profile-photo {
+    width: 100%;
+    height: auto;
+  }
+
+  .projects {
+    padding: 20px;
+  }
+}
+
 
