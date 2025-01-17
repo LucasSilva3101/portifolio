@@ -54,7 +54,7 @@ body {
 .tech-icon {
   font-size: 40px;
   color: #fff;
-  animation: float 2s ease-in-out infinite; /* Animação flutuante */
+  animation: float 2s ease-in-out infinite;
 }
 
 .angular-icon {
@@ -200,29 +200,27 @@ body {
 }
 
 .card {
-  position: relative; /* Necessário para posicionar a faixa */
+  position: relative;
   width: 300px;
   height: 500px;
-  background: linear-gradient(145deg, #1c1c1c, #2a2a2a); /* Gradiente moderno */
-  border: 2px solid #007bff; /* Combina com o tema */
-  border-radius: 16px; /* Arredondamento para suavidade */
+  background: linear-gradient(145deg, #1c1c1c, #2a2a2a);
+  border: 2px solid #007bff;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Poppins", sans-serif;
   font-size: 18px;
-  color: #fff; /* Texto em branco para contraste */
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.1); /* Efeito 3D */
+  color: #fff;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.05); /* Leve zoom ao passar o mouse */
+  transform: scale(1.05);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7), inset 0 2px 6px rgba(255, 255, 255, 0.15);
 }
 
-/* Adicionando um toque no texto dos cards */
 .card::before {
   content: "";
   position: absolute;
@@ -235,7 +233,7 @@ body {
 }
 
 .card span {
-  z-index: 2; /* Para o texto ficar acima da camada */
+  z-index: 2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
