@@ -10,8 +10,14 @@
       <li>
         <a routerLink="/skills">Skills</a>
       </li>
-      <li>
+      <li class="dropdown">
         <a>Contatos</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a (click)="copyToClipboard('lucasdsg31@outlook.com')">lucasdsg31&#64;outlook.com</a>
+          </li>
+          <li><a target="_blank" [href]="LinkedinLink">Linkedin</a></li>
+        </ul>
       </li>
     </ul>
   </nav>
