@@ -344,12 +344,42 @@ body {
   .icons-container {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 20px;
     margin-top: 15px;
   }
 
   .tech-icon {
-    font-size: 25px;
+    font-size: 23px;
+  }
+
+  .angular-icon {
+    color: #dd0031;
+    animation-delay: 0s;
+  }
+
+  .typescript-icon {
+    width: 21px;
+    height: 21px;
+    animation: float 2s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  .js-icon {
+    color: #f7df1e;
+    animation-delay: 1.0s;
+  }
+
+
+  .java-icon {
+    color: #f89820;
+    animation-delay: 1.5s;
+  }
+
+  .spring-boot {
+    width: 23px;
+    height: 23px;
+    animation: float 2s ease-in-out infinite;
+    animation-delay: 2s;
   }
 
   .card {
