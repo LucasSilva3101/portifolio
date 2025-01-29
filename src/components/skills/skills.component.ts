@@ -14,6 +14,7 @@ export class SkillsComponent implements OnInit {
   private isDragging = false;
   private previousMousePosition = { x: 0, y: 0 };
   private previousTouchPosition = { x: 0, y: 0 };
+  private randomRotationSpeed = { x: Math.random() * 0.01, y: Math.random() * 0.01 }; // Rotação aleatória
 
   constructor() { }
 
@@ -80,6 +81,11 @@ export class SkillsComponent implements OnInit {
 
   animate(): void {
     requestAnimationFrame(() => this.animate());
+
+    // Aplicando a rotação aleatória contínua
+    this.octahedron.rotation.x += this.randomRotationSpeed.x;
+    this.octahedron.rotation.y += this.randomRotationSpeed.y;
+
     this.renderer.render(this.scene, this.camera);
   }
 
