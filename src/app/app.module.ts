@@ -13,8 +13,7 @@ import { SkillsComponent } from '../components/skills/skills.component';
   declarations: [
     AppComponent,
     NavBarComponent,
-    ExperienciasComponent,
-    SkillsComponent
+    ExperienciasComponent
   ],
   imports: [
     BrowserModule,
