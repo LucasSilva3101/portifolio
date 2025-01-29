@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'; // Importando OrbitControls
 
 @Component({
   selector: 'app-skills',
@@ -13,6 +14,7 @@ export class SkillsComponent implements OnInit {
   private renderer!: THREE.WebGLRenderer;
   private labelRenderer!: CSS2DRenderer; // Renderer para renderizar labels
   private octahedron!: THREE.LineSegments;
+  private controls!: OrbitControls; // Declaração para os controles de órbita
   private isDragging = false;
   private previousMousePosition = { x: 0, y: 0 };
   private randomRotationSpeed = { x: Math.random() * 0.01, y: Math.random() * 0.01 };
@@ -68,6 +70,13 @@ export class SkillsComponent implements OnInit {
     this.createLabel('Teste 5', 0, 0, 1.5);  // Vértice 5
     this.createLabel('Teste 6', 0, 0, -1.5); // Vértice 6
 
+    // Adicionando controles de órbita
+    this.controls = new OrbitControls(this.camera, this.labelRenderer.domElement);
+    this.controls.enableDamping = true; // Ativa suavização no movimento da câmera
+    this.controls.dampingFactor = 0.25; // Fator de suavização
+    this.controls.screenSpacePanning = false; // Impede o movimento da câmera ao longo do plano da tela
+    this.controls.maxPolarAngle = Math.PI / 2; // Limita o ângulo vertical de rotação
+
     window.addEventListener('resize', () => this.onResize());
     canvas.addEventListener('mousedown', (event) => this.onMouseDown(event));
     canvas.addEventListener('mousemove', (event) => this.onMouseMove(event));
@@ -105,6 +114,9 @@ export class SkillsComponent implements OnInit {
 
   animate(): void {
     requestAnimationFrame(() => this.animate());
+
+    // Atualizando os controles de órbita
+    this.controls.update(); // Necessário se enableDamping for ativado
 
     // Rotação aleatória
     this.octahedron.rotation.x += this.randomRotationSpeed.x;
