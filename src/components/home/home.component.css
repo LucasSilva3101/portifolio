@@ -29,11 +29,32 @@ body {
 }
 
 .name-highlight {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 3px solid #007acc;
   color: #007bff;
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: normal;
+  white-space: nowrap;
+  animation: typing 3s steps(15) 1s 1 normal both, blink 0.75s step-end infinite;;
+  font-weight: bold;
   font-size: 50px;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 60%;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    border-color: transparent;
+  }
+  50%, 100% {
+    border-color:#007acc;
+  }
 }
 
 .photo-container {
@@ -335,6 +356,10 @@ body {
     font-size: 12px;
     line-height: 1.4;
     margin-bottom: 10px;
+  }
+
+  .name-highlight {
+    font-size: 27px;
   }
 
   .icons-container {
