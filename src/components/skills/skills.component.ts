@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
@@ -13,6 +13,7 @@ export class SkillsComponent implements OnInit {
   private octahedron!: THREE.LineSegments;
   private isDragging = false;
   private previousMousePosition = { x: 0, y: 0 };
+  private previousTouchPosition = { x: 0, y: 0 };
 
   constructor() { }
 
@@ -27,13 +28,9 @@ export class SkillsComponent implements OnInit {
     this.scene = new THREE.Scene();
     this.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.5);
-    pointLight.position.set(2, 2, 2);
-    this.scene.add(pointLight);
-
     const geometry = new THREE.OctahedronGeometry(1.5);
     const edges = new THREE.EdgesGeometry(geometry);
-    const material = new THREE.LineBasicMaterial({ color: 0x44aa88 });
+    const material = new THREE.LineBasicMaterial({ color: 0x007acc });
     this.octahedron = new THREE.LineSegments(edges, material);
     this.scene.add(this.octahedron);
 
@@ -62,6 +59,11 @@ export class SkillsComponent implements OnInit {
     canvas.addEventListener('mousemove', (event) => this.onMouseMove(event));
     canvas.addEventListener('mouseup', () => this.onMouseUp());
 
+    // Eventos de toque para dispositivos móveis
+    canvas.addEventListener('touchstart', (event) => this.onTouchStart(event));
+    canvas.addEventListener('touchmove', (event) => this.onTouchMove(event));
+    canvas.addEventListener('touchend', () => this.onTouchEnd());
+
     this.animate();
   }
 
@@ -81,6 +83,7 @@ export class SkillsComponent implements OnInit {
     this.renderer.render(this.scene, this.camera);
   }
 
+  // Métodos para controle com o mouse
   onMouseDown(event: MouseEvent): void {
     this.isDragging = true;
     this.previousMousePosition = { x: event.clientX, y: event.clientY };
@@ -102,6 +105,32 @@ export class SkillsComponent implements OnInit {
   }
 
   onMouseUp(): void {
+    this.isDragging = false;
+  }
+
+  // Métodos para controle com o toque
+  onTouchStart(event: TouchEvent): void {
+    event.preventDefault();  // Previne o comportamento padrão de rolagem
+    this.isDragging = true;
+    this.previousTouchPosition = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+  }
+
+  onTouchMove(event: TouchEvent): void {
+    if (!this.isDragging) return;
+
+    const deltaMove = {
+      x: event.touches[0].clientX - this.previousTouchPosition.x,
+      y: event.touches[0].clientY - this.previousTouchPosition.y,
+    };
+
+    const rotationSpeed = 0.005;
+    this.octahedron.rotation.y += deltaMove.x * rotationSpeed;
+    this.octahedron.rotation.x += deltaMove.y * rotationSpeed;
+
+    this.previousTouchPosition = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+  }
+
+  onTouchEnd(): void {
     this.isDragging = false;
   }
 }

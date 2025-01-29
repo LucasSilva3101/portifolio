@@ -27,6 +27,7 @@
     "bootstrap-icons": "^1.11.3",
     "rxjs": "~7.8.0",
     "three": "^0.172.0",
+    "three-stdlib": "^2.35.12",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
