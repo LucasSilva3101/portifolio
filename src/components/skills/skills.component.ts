@@ -11,8 +11,8 @@ export class SkillsComponent implements OnInit {
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
   private octahedron!: THREE.LineSegments;
-  private rotationVector = new THREE.Vector3(0, 0, 0);
-  private isRotating = false;
+  private isDragging = false;
+  private previousMousePosition = { x: 0, y: 0 };
 
   constructor() { }
 
@@ -58,6 +58,10 @@ export class SkillsComponent implements OnInit {
       this.onResize();
     });
 
+    canvas.addEventListener('mousedown', (event) => this.onMouseDown(event));
+    canvas.addEventListener('mousemove', (event) => this.onMouseMove(event));
+    canvas.addEventListener('mouseup', () => this.onMouseUp());
+
     this.animate();
   }
 
@@ -74,32 +78,30 @@ export class SkillsComponent implements OnInit {
 
   animate(): void {
     requestAnimationFrame(() => this.animate());
-    if (this.isRotating) {
-      this.octahedron.rotation.x -= this.rotationVector.x;
-      this.octahedron.rotation.y -= this.rotationVector.y;
-    }
     this.renderer.render(this.scene, this.camera);
   }
 
-  @HostListener('click', ['$event'])
-  onMouseClick(event: MouseEvent): void {
-    const { clientX, clientY } = event;
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+  onMouseDown(event: MouseEvent): void {
+    this.isDragging = true;
+    this.previousMousePosition = { x: event.clientX, y: event.clientY };
+  }
 
-    const centerX = width / 2;
-    const centerY = height / 2;
+  onMouseMove(event: MouseEvent): void {
+    if (!this.isDragging) return;
 
-    const deltaX = clientX - centerX;
-    const deltaY = centerY - clientY;
+    const deltaMove = {
+      x: event.clientX - this.previousMousePosition.x,
+      y: event.clientY - this.previousMousePosition.y,
+    };
 
-    this.rotationVector.set(
-      -deltaY / height * 0.1,
-      -deltaX / width * 0.1,
-      0
-    );
-    this.isRotating = true;
+    const rotationSpeed = 0.005;
+    this.octahedron.rotation.y += deltaMove.x * rotationSpeed;
+    this.octahedron.rotation.x += deltaMove.y * rotationSpeed;
 
-    setTimeout(() => { this.isRotating = false; }, 500);
+    this.previousMousePosition = { x: event.clientX, y: event.clientY };
+  }
+
+  onMouseUp(): void {
+    this.isDragging = false;
   }
 }
