@@ -438,6 +438,11 @@ body {
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
+  .about-container h2 {
+    font-size: 27px;
+    padding: 10px 0px 10px 0px;;
+  }
+
   .about-text {
     padding: 15px;
   }
@@ -446,6 +451,7 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     text-align: justify;
+    padding-bottom: 10px;
   }
 
   .social-links {
@@ -454,8 +460,10 @@ body {
     align-items: center;
     gap: 10px;
     color: #ffffff;
-    margin-right: 20px;
     text-decoration: none;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
   }
 
   .social-links i {
@@ -464,15 +472,10 @@ body {
 
   .social-links a {
     color: #ffffff;
-    margin-right: 20px;
     text-decoration: none;
   }
 
   .button-download a {
-    width: 14rem;
-    height: 3rem;
-    display: inline;
-    padding: 15px;
     background-color: white;
     color: #070707;
     border-radius: 19px;
