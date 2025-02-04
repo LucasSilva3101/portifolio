@@ -1,9 +1,10 @@
-body {
+html,body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #070707;
   color: #fff;
   height: max-content;
+  scroll-behavior: smooth;
 }
 
 .page-container {
@@ -21,6 +22,8 @@ body {
   max-width: 600px;
   height: 400px;
   text-align: justify;
+  opacity: 0;
+  animation: slideIn 1s ease-out forwards;
 }
 
 .description-text {
@@ -54,6 +57,17 @@ body {
   }
   50%, 100% {
     border-color:#007acc;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -124,6 +138,41 @@ body {
   padding: 20px;
   transform: translateY(50px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.about-photo, .about-text {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.about-container.visible .about-photo {
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+.about-container.visible .about-text {
+  animation: slideInRight 1s ease-out forwards;
 }
 
 .about-photo img {
