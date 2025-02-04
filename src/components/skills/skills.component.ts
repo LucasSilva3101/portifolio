@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js'; // Importando OrbitControls
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
 @Component({
   selector: 'app-skills',
@@ -12,12 +13,11 @@ export class SkillsComponent implements OnInit {
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
-  private labelRenderer!: CSS2DRenderer; // Renderer para renderizar labels
+  private labelRenderer!: CSS2DRenderer;
   private octahedron!: THREE.LineSegments;
-  private controls!: OrbitControls; // Declaração para os controles de órbita
-  private isDragging = false;
-  private previousMousePosition = { x: 0, y: 0 };
-  private randomRotationSpeed = { x: Math.random() * 0.01, y: Math.random() * 0.01 };
+  private controls!: OrbitControls;
+  private gui!: GUI;
+  private labels: { text: string, object: CSS2DObject }[] = [];
 
   constructor() { }
 
@@ -38,55 +38,39 @@ export class SkillsComponent implements OnInit {
     this.octahedron = new THREE.LineSegments(edges, material);
     this.scene.add(this.octahedron);
 
-    const canvasSizes = {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-
-    this.camera = new THREE.PerspectiveCamera(
-      75,
-      canvasSizes.width / canvasSizes.height,
-      0.1,
-      1000
-    );
+    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     this.camera.position.z = 5;
     this.scene.add(this.camera);
 
     this.renderer = new THREE.WebGLRenderer({ canvas });
-    this.renderer.setSize(canvasSizes.width, canvasSizes.height);
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Criando o CSS2DRenderer para labels
     this.labelRenderer = new CSS2DRenderer();
-    this.labelRenderer.setSize(canvasSizes.width, canvasSizes.height);
+    this.labelRenderer.setSize(window.innerWidth, window.innerHeight);
     this.labelRenderer.domElement.style.position = 'absolute';
     this.labelRenderer.domElement.style.top = '0px';
     document.body.appendChild(this.labelRenderer.domElement);
 
-    // Criando os labels nos vértices do octaedro
-    this.createLabel('Teste', 1.5, 0, 0);  // Vértice 1
-    this.createLabel('Teste 2', -1.5, 0, 0); // Vértice 2
-    this.createLabel('Teste 3', 0, 1.5, 0);  // Vértice 3
-    this.createLabel('Teste 4', 0, -1.5, 0); // Vértice 4
-    this.createLabel('Teste 5', 0, 0, 1.5);  // Vértice 5
-    this.createLabel('Teste 6', 0, 0, -1.5); // Vértice 6
+    this.createLabel('Habilidade 1', 1.5, 0, 0);
+    this.createLabel('Habilidade 2', -1.5, 0, 0);
+    this.createLabel('Habilidade 3', 0, 1.5, 0);
+    this.createLabel('Habilidade 4', 0, -1.5, 0);
+    this.createLabel('Habilidade 5', 0, 0, 1.5);
+    this.createLabel('Habilidade 6', 0, 0, -1.5);
 
-    // Adicionando controles de órbita
     this.controls = new OrbitControls(this.camera, this.labelRenderer.domElement);
-    this.controls.enableDamping = true; // Ativa suavização no movimento da câmera
-    this.controls.dampingFactor = 0.25; // Fator de suavização
-    this.controls.screenSpacePanning = false; // Impede o movimento da câmera ao longo do plano da tela
-    this.controls.maxPolarAngle = Math.PI / 2; // Limita o ângulo vertical de rotação
+    this.controls.enableDamping = true;
+    this.controls.dampingFactor = 0.25;
+    this.controls.screenSpacePanning = false;
+    this.controls.maxPolarAngle = Math.PI / 2;
+
+    this.initGUI();
 
     window.addEventListener('resize', () => this.onResize());
-    canvas.addEventListener('mousedown', (event) => this.onMouseDown(event));
-    canvas.addEventListener('mousemove', (event) => this.onMouseMove(event));
-    canvas.addEventListener('mouseup', () => this.onMouseUp());
-
     this.animate();
   }
 
   createLabel(text: string, x: number, y: number, z: number): void {
-    // Criando o label com estilo
     const labelDiv = document.createElement('div');
     labelDiv.className = 'label';
     labelDiv.textContent = text;
@@ -94,59 +78,41 @@ export class SkillsComponent implements OnInit {
     labelDiv.style.color = 'white';
     labelDiv.style.fontSize = '20px';
 
-    // Criando o CSS2DObject para o label
     const labelObject = new CSS2DObject(labelDiv);
-    labelObject.position.set(x, y, z); // Posição do label no espaço 3D
-    this.octahedron.add(labelObject); // Associando o label ao octaedro
+    labelObject.position.set(x, y, z);
+    this.octahedron.add(labelObject);
+
+    this.labels.push({ text, object: labelObject });
+  }
+
+  initGUI(): void {
+    this.gui = new GUI();
+    const skillsFolder = this.gui.addFolder('Habilidades');
+    this.labels.forEach(label => {
+      skillsFolder.add({ show: () => this.focusOnLabel(label.object) }, 'show').name(label.text);
+    });
+    skillsFolder.open();
+  }
+
+  focusOnLabel(labelObject: CSS2DObject): void {
+    const targetPosition = labelObject.position.clone().multiplyScalar(2);
+    new THREE.Vector3().lerpVectors(this.camera.position, targetPosition, 0.2);
+    this.camera.position.set(targetPosition.x, targetPosition.y, targetPosition.z + 2);
+    this.controls.target.set(labelObject.position.x, labelObject.position.y, labelObject.position.z);
+    this.controls.update();
   }
 
   onResize(): void {
-    const canvasSizes = {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-
-    this.camera.aspect = canvasSizes.width / canvasSizes.height;
+    this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(canvasSizes.width, canvasSizes.height);
-    this.labelRenderer.setSize(canvasSizes.width, canvasSizes.height);
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.labelRenderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   animate(): void {
     requestAnimationFrame(() => this.animate());
-
-    // Atualizando os controles de órbita
-    this.controls.update(); // Necessário se enableDamping for ativado
-
-    // Rotação aleatória
-    this.octahedron.rotation.x += this.randomRotationSpeed.x;
-    this.octahedron.rotation.y += this.randomRotationSpeed.y;
-
+    this.controls.update();
     this.renderer.render(this.scene, this.camera);
-    this.labelRenderer.render(this.scene, this.camera); // Renderizando os labels
-  }
-
-  onMouseDown(event: MouseEvent): void {
-    this.isDragging = true;
-    this.previousMousePosition = { x: event.clientX, y: event.clientY };
-  }
-
-  onMouseMove(event: MouseEvent): void {
-    if (!this.isDragging) return;
-
-    const deltaMove = {
-      x: event.clientX - this.previousMousePosition.x,
-      y: event.clientY - this.previousMousePosition.y,
-    };
-
-    const rotationSpeed = 0.005;
-    this.octahedron.rotation.y += deltaMove.x * rotationSpeed;
-    this.octahedron.rotation.x += deltaMove.y * rotationSpeed;
-
-    this.previousMousePosition = { x: event.clientX, y: event.clientY };
-  }
-
-  onMouseUp(): void {
-    this.isDragging = false;
+    this.labelRenderer.render(this.scene, this.camera);
   }
 }
