@@ -8,16 +8,17 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'app-experiencias',
-  templateUrl: './experiencias.component.html',
-  styleUrls: ['./experiencias.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', padding: '6px 24px', opacity: 0 })),
-      state('expanded', style({ height: '*', opacity: 1, padding: '16px 24px' })),
-      transition('expanded <=> collapsed', animate('300ms ease')),
-    ]),
-  ],
+    selector: 'app-experiencias',
+    templateUrl: './experiencias.component.html',
+    styleUrls: ['./experiencias.component.css'],
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed', style({ height: '0px', padding: '6px 24px', opacity: 0 })),
+            state('expanded', style({ height: '*', opacity: 1, padding: '16px 24px' })),
+            transition('expanded <=> collapsed', animate('300ms ease')),
+        ]),
+    ],
+    standalone: false
 })
 export class ExperienciasComponent {
   expandedCardId: number | null = null;

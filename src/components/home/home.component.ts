@@ -5,12 +5,14 @@ import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   linkParaCurriculo = 'assets/curriculo.pdf';
   isVisible = false;
 
   constructor(private el: ElementRef) {}
+
+  ngOnInit() {}
 
   ngAfterViewInit() {
     window.addEventListener('scroll', this.checkScroll);
