@@ -2,14 +2,16 @@
   <section class="container">
     <h1>Minhas Experiências Profissionais</h1>
     <div class="card" *ngFor="let exp of experiences">
-      <input type="checkbox" [id]="'card' + exp.id" class="toggle" />
-      <label [for]="'card' + exp.id" class="card-header">
+      <div class="card-header" (click)="toggleCard(exp.id)">
         <img [src]="exp.logo" [alt]="exp.title" class="card-image" />
         <h3>{{ exp.title }}</h3>
-      </label>
-      <div class="card-detail">
-        <p>{{ exp.description }}</p>
-        <p>{{ exp.dataInit }} até {{ exp.dataFim }}</p>
+      </div>
+      <div
+        class="card-detail"
+        [@detailExpand]="expandedCardId === exp.id ? 'expanded' : 'collapsed'"
+      >
+        <p class="role">{{ exp.description }}</p>
+        <p class="date">{{ exp.dataInit }} até {{ exp.dataFim }}</p>
         <ul>
           <li *ngFor="let detail of exp.details">{{ detail }}</li>
         </ul>

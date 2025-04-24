@@ -1,1 +1,16 @@
-<canvas id="app-skills"></canvas>
+<div class="skills-container text-white p-4">
+  <h2 class="text-center mb-4">Minhas Skills</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-3" *ngFor="let skill of skills">
+      <mat-card class="skill-card" (click)="toggleSkill(skill)">
+        <mat-icon class="skill-icon">{{ skill.icon }}</mat-icon>
+        <div class="skill-title">{{ skill.name }}</div>
+        <mat-expansion-panel [expanded]="skill.expanded" hideToggle>
+          <mat-expansion-panel-header></mat-expansion-panel-header>
+          <p>{{ skill.description }}</p>
+        </mat-expansion-panel>
+      </mat-card>
+    </div>
+  </div>
+</div>
