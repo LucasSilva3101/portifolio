@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent {
 
-  LinkedinLink:string = "https://www.linkedin.com/in/lucas-silva-b89171269/";
+  LinkedinLink:string = "https://linkedin.com/in/lucas-da-silva-gomes-b89171269";
 
   copyToClipboard(text: string): void {
     navigator.clipboard.writeText(text).then(() => {
