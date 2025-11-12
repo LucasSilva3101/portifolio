@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
-
 @Component({
-    selector: 'app-skills',
-    templateUrl: './skills.component.html',
-    styleUrls: ['./skills.component.css'],
-    standalone: false
+  selector: 'app-skills',
+  templateUrl: './skills.component.html',
+  styleUrls: ['./skills.component.css'],
+  standalone: false
 })
 export class SkillsComponent {
 
@@ -83,9 +82,20 @@ export class SkillsComponent {
       icon: 'dataset',
       description: 'Banco de dados NoSQL orientado a documentos, ideal para aplicações modernas.',
       expanded: false
+    },
+    {
+      name: 'Python',
+      icon: 'terminal',
+      description: 'Linguagem de programação versátil, amplamente usada em ciência de dados, automação, inteligência artificial e back-end.',
+      expanded: false
+    },
+    {
+      name: 'Kotlin',
+      icon: 'smartphone',
+      description: 'Linguagem moderna usada para desenvolvimento Android e aplicações multiplataforma, com sintaxe concisa e segura.',
+      expanded: false
     }
   ];
-
 
   toggleSkill(skill: any) {
     skill.expanded = !skill.expanded;
