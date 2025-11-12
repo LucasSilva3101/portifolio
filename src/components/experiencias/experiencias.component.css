@@ -1,18 +1,20 @@
-html, body {
-  margin: 0;
-  padding: 0;
+/* Faz o componente ocupar a tela toda e aplica o fundo */
+:host {
+  display: block;
+  min-height: 100vh;
   background-color: #000;
   font-family: 'Segoe UI', sans-serif;
-  height: 100%;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
   color: #fff;
 }
 
+/* Conteúdo centralizado e com largura máxima */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Título */
 h1 {
   text-align: center;
   font-size: 2.5rem;
@@ -21,13 +23,16 @@ h1 {
   color: #fff;
 }
 
+/* Cartão */
 .card {
   background: #2c2c2c;
   border-radius: 16px;
   margin-bottom: 20px;
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  overflow: hidden;              /* impede “vazamentos” na animação */
+  will-change: transform;        /* suaviza a animação */
 }
 
 .card:hover {
@@ -35,9 +40,11 @@ h1 {
   box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
 }
 
+/* Cabeçalho do cartão */
 .card-header {
   display: flex;
   align-items: center;
+  gap: 16px;
   padding: 16px;
   border-bottom: 1px solid #444;
 }
@@ -47,7 +54,6 @@ h1 {
   height: 70px;
   object-fit: contain;
   border-radius: 12px;
-  margin-right: 16px;
   background: #fff;
   padding: 6px;
 }
@@ -58,13 +64,16 @@ h1 {
   color: #f0f0f0;
 }
 
+/* Área que expande/colapsa */
 .card-detail {
-  overflow: hidden;
   background-color: #1e1e1e;
   padding: 0 24px;
   border-radius: 0 0 16px 16px;
+  /* garante que a altura animada não estoure visualmente */
+  overflow: hidden;
 }
 
+/* Tipografia do detalhe */
 .card-detail p,
 .card-detail li {
   color: #ccc;
@@ -84,5 +93,5 @@ h1 {
 
 .card-detail ul {
   padding-left: 20px;
-  margin-bottom: 16px;
+  margin: 0 0 16px 0;
 }
