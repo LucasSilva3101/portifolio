@@ -1,4 +1,4 @@
-html,body {
+html, body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #070707;
@@ -6,6 +6,8 @@ html,body {
   height: max-content;
   scroll-behavior: smooth;
 }
+
+/* SECTION TOPO */
 
 .page-container {
   display: flex;
@@ -37,7 +39,7 @@ html,body {
   border-right: 3px solid #007acc;
   color: #007bff;
   white-space: nowrap;
-  animation: typing 3s steps(15) 1s 1 normal both, blink 0.75s step-end infinite;;
+  animation: typing 3s steps(15) 1s 1 normal both, blink 0.75s step-end infinite;
   font-weight: bold;
   font-size: 50px;
 }
@@ -56,7 +58,7 @@ html,body {
     border-color: transparent;
   }
   50%, 100% {
-    border-color:#007acc;
+    border-color: #007acc;
   }
 }
 
@@ -106,9 +108,8 @@ html,body {
 
 .js-icon {
   color: #f7df1e;
-  animation-delay: 1.0s;
+  animation-delay: 1s;
 }
-
 
 .java-icon {
   color: #f89820;
@@ -130,6 +131,8 @@ html,body {
     transform: translateY(-10px);
   }
 }
+
+/* SECTION ABOUT */
 
 .about-container {
   display: flex;
@@ -162,7 +165,8 @@ html,body {
   }
 }
 
-.about-photo, .about-text {
+.about-photo,
+.about-text {
   opacity: 0;
   transition: opacity 0.5s ease-out;
 }
@@ -241,15 +245,16 @@ html,body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* SECTION PROJETOS */
+
 .projects {
   justify-content: center;
   align-items: center;
   height: 100vh;
   text-align: center;
-  padding-top: 10rem ;
+  padding-top: 10rem;
   padding: 200px;
 }
-
 
 .projects h1,
 .projects h2 {
@@ -285,7 +290,8 @@ html,body {
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7), inset 0 2px 6px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7),
+    inset 0 2px 6px rgba(255, 255, 255, 0.15);
 }
 
 .card::before {
@@ -295,7 +301,11 @@ html,body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(0, 0, 0, 0.1)
+  );
   z-index: 1;
 }
 
@@ -303,6 +313,63 @@ html,body {
   z-index: 2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
+
+.projects .card a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  z-index: 10;
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* HOVER igual em todos os botões da aba projetos */
+.projects .card a:hover {
+  filter: brightness(1.1);
+}
+
+.visionway-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0 10px;
+  margin: -15px;
+  box-sizing: border-box;
+}
+
+.visionway-buttons a {
+  flex: 1;
+  max-width: 150px;
+  padding: 10px 0;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  z-index: 10;
+  position: relative;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.visionway-buttons .btn-github {
+  background-color: #007bff;
+}
+
+.visionway-buttons .btn-download {
+  background-color: #28a745;
+}
+
+/* CARD "EM BREVE" */
 
 .coming-soon {
   position: absolute;
@@ -339,49 +406,11 @@ html,body {
   }
 }
 
-.visionway-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 0 10px;
-  margin: 10px 0 20px;
-  box-sizing: border-box;
-}
-
-.visionway-buttons a {
-  flex: 1;
-  max-width: 150px;
-  padding: 10px 0;
-  border-radius: 10px;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 3.3rem;
-  z-index: 10;
-  position: relative;
-  font-size: 14px;
-}
-
-.visionway-buttons .btn-github {
-  background-color: #007bff;
-}
-
-.visionway-buttons .btn-download {
-  background-color: #28a745;
-}
-
-.visionway-buttons a:hover {
-  filter: brightness(1.1);
-}
-
-
 .coming-soon span::before {
   content: "Em breve novidades • Em breve novidades • Em breve novidades • Em breve novidades • Em breve novidades • ";
 }
 
-
-
+/* =================== RESPONSIVO 1024px =================== */
 
 @media (max-width: 1024px) {
   .description-container {
@@ -430,9 +459,10 @@ html,body {
   }
 }
 
-@media (max-width: 480px) {
+/* =================== RESPONSIVO 480px =================== */
 
-  html,body {
+@media (max-width: 480px) {
+  html, body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #070707;
@@ -483,9 +513,8 @@ html,body {
 
   .js-icon {
     color: #f7df1e;
-    animation-delay: 1.0s;
+    animation-delay: 1s;
   }
-
 
   .java-icon {
     color: #f89820;
@@ -536,7 +565,7 @@ html,body {
 
   .about-container h2 {
     font-size: 25px;
-    padding: 10px 0px 10px 0px;;
+    padding: 10px 0;
   }
 
   .about-text {
@@ -630,7 +659,8 @@ html,body {
 
   .card:hover {
     transform: scale(1.05);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7), inset 0 2px 6px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7),
+      inset 0 2px 6px rgba(255, 255, 255, 0.15);
   }
 
   .card::before {
@@ -640,7 +670,11 @@ html,body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.1));
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(0, 0, 0, 0.1)
+    );
     z-index: 1;
   }
 
@@ -675,18 +709,7 @@ html,body {
     animation: move-text 20s linear infinite;
   }
 
-  @keyframes move-text {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
   .coming-soon span::before {
     content: "Em breve novidades • Em breve novidades • Em breve novidades • Em breve novidades • Em breve novidades • ";
   }
 }
-
-
