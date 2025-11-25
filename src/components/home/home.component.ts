@@ -8,7 +8,7 @@ import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-  linkParaCurriculo = 'assets/curriculo.pdf';
+  linkParaCurriculo = 'assets/Lucas da Silva Gomes.pdf';
   isVisible = false;
 
   constructor(private el: ElementRef) {}
