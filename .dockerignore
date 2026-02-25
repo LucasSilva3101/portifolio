@@ -1,9 +1,18 @@
+# Dependências locais
 node_modules
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Builds locais
 dist
+coverage
+
+# Configs e metadados que não precisam ir para a imagem
 .git
 .gitignore
-Dockerfile
-docker-compose.yml
 .vscode
 .idea
-*.log
+*.md
+Dockerfile
+docker-compose.yml

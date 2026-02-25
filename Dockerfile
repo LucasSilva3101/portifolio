@@ -1,33 +1,35 @@
 # ========= STAGE 1: Build da aplicação Angular =========
 FROM node:22-alpine AS build
 
-# Diretório de trabalho dentro da imagem
+# Pasta de trabalho dentro da imagem
 WORKDIR /app
 
-# Copia arquivos de dependência
+# Copia somente arquivos de dependências primeiro (melhor cache)
 COPY package*.json ./
 
-# Instala dependências (usa a versão do projeto)
+# Instala dependências em modo “clean”
 RUN npm ci
 
-# Copia o restante do código (src, angular.json, etc.)
+# Copia o restante do código-fonte
 COPY . .
 
-# Build em modo produção
+# Build em modo produção (defaultConfiguration já é "production")
 RUN npm run build -- --configuration=production
 
-# ========= STAGE 2: Servir os arquivos com Nginx =========
+# ========= STAGE 2: Servir os arquivos estáticos com Nginx =========
 FROM nginx:alpine AS runtime
 
 # Limpa o conteúdo padrão do Nginx
 RUN rm -rf /usr/share/nginx/html/*
 
-# *** CAMINHO CERTO DO SEU BUILD ***
-# Seu output é: dist/portifolio
-COPY --from=build /app/dist/portifolio/ /usr/share/nginx/html
+# IMPORTANTE:
+# O Angular 19 com o builder "application" gera:
+# dist/portifolio/browser/index.html
+# Copiamos o CONTEÚDO de "browser" direto para a raiz do Nginx
+COPY --from=build /app/dist/portifolio/browser/ /usr/share/nginx/html
 
-# Expõe a porta HTTP
+# Porta interna do Nginx
 EXPOSE 80
 
-# Inicia o Nginx em modo foreground
+# Sobe o Nginx em foreground
 CMD ["nginx", "-g", "daemon off;"]
